@@ -1,0 +1,23 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "dotnet",
+			"task": "build",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"problemMatcher": [],
+			"label": "dotnet: build"
+		},
+		{
+			"label": "Launch PlateUp",
+			"type": "process",
+			"windows": {
+				"command": "C:/Program Files (x86)/Steam/steamapps/common/PlateUp/PlateUp/PlateUp.exe"
+			},
+			"problemMatcher": []
+		}
+	]
+}
