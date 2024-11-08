@@ -1,47 +1,58 @@
-using KitchenLib;
-using KitchenLib.Logging;
 using KitchenMods;
-using System.Reflection;
 using System.Collections.Generic;
-using System;
 using System.Linq;
 using KitchenDesignManager.Providers;
+using PreferenceSystem;
+using ONe.KitchenDesigner.KitchenDesigns;
+using Kitchen;
+using ExitGames.Client.Photon.StructWrapping;
 
 
 namespace KitchenDesignManager
 {
-    public class Mod : BaseMod, IModSystem
+
+    public class Mod : IModInitializer
     {
-        public const string MOD_GUID = "com.ohkannaduh.kdm";
+        public const string MOD_GUID = "de.mightylabs.www";
         public const string MOD_NAME = "Kitchen Design Manager";
-        public const string MOD_VERSION = "1.0.0";
-        public const string MOD_AUTHOR = "OhKannaDuh";
-        public const string MOD_GAMEVERSION = ">=1.1.4";
+        public const string MOD_VERSION = "1.1.0";
+        public const string MOD_AUTHOR = "ThaMighty";
+        public const string MOD_GAMEVERSION = ">=1.2.0";
+  
+        private static Dictionary<string, string> Designs = [];
 
-        public static List<Entry> Entries = new List<Entry>();
-
-        public static KitchenLogger Logger;
-
-        public Mod() : base(MOD_GUID, MOD_NAME, MOD_AUTHOR, MOD_VERSION, MOD_GAMEVERSION, Assembly.GetExecutingAssembly())
+        static PreferenceSystemManager PrefManager;
+        public static void LoadDesigns()
         {
-        }
-
-        protected override void OnInitialise()
-        {
-            Logger.LogInfo($"{MOD_GUID} v{MOD_VERSION} initialising...");
-
-            // Load from providers
-            foreach (IProvidesKitchenDesigns provider in DesignLoader.All())
+            foreach (IDesignProvider provider in DesignLoader.All())
             {
+                foreach (KeyValuePair<string, string> kvp in provider.GetDesigns())
+                Designs.Add(kvp.Key, kvp.Value);
             }
         }
 
-        protected override void OnPostActivate(KitchenMods.Mod mod)
+        public void PostActivate(KitchenMods.Mod mod)
         {
-            Logger = InitLogger();
-
             DesignLoader.Register(new JsonDesignProvider());
+
+            PrefManager = new PreferenceSystemManager(MOD_GUID, MOD_NAME);
+
+            LoadDesigns();
+
+            PrefManager
+            .AddLabel("Kitchen Design Manager")
+            .AddInfo("Select your favorite Kitchen Design")
+            .AddOption<string>("designs", Designs.Keys.ToArray()[0], [.. Designs.Values], [.. Designs.Keys], true)
+            .AddButton("Load Design", (Load) =>
+            {
+                KitchenDesignDecoder.TryDecode(PrefManager.Get<string>("designs"), out KitchenDesign design, out string message);
+                KitchenDesignLoader.LoadKitchenDesign(design, "");
+            });
+
+            PrefManager.RegisterMenu(PreferenceSystemManager.MenuType.PauseMenu);
         }
+        public void PreInject() { }
+        public void PostInject() { }
     }
 }
 
