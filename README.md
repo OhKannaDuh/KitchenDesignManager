@@ -2,7 +2,7 @@
 
 - [PreferenceSystem](https://steamcommunity.com/sharedfiles/filedetails/?id=2949018507)
 
-# Adding custom designs
+## Adding custom designs
 
 The mod loads json files from `%localappdata%low\It's Happening\PlateUp\UserData\KitchdenDesignManager\`
 
