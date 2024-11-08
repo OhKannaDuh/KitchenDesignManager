@@ -13,10 +13,10 @@ namespace KitchenDesignManager
 
     public class Mod : IModInitializer
     {
-        public const string MOD_GUID = "de.mightylabs.www";
+        public const string MOD_GUID = "com.ohkannaduh.kdm";
         public const string MOD_NAME = "Kitchen Design Manager";
         public const string MOD_VERSION = "1.1.0";
-        public const string MOD_AUTHOR = "ThaMighty";
+        public const string MOD_AUTHOR = "OhKannaDuh, ThaMighty";
         public const string MOD_GAMEVERSION = ">=1.2.0";
   
         private static Dictionary<string, string> Designs = [];
