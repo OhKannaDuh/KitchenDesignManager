@@ -17,7 +17,7 @@ These json files can contain any number of designs and should follow this schema
 
 ## Sharing custom designs on the workshop
 
-You can create a mod to easily share custom designs and register them with this mod. To do so create a provider class that implements the `IProvidesKitchenDesigns` interface.
+You can create a mod to easily share custom designs and register them with this mod. To do so create a provider class that implements the `IDesignProvider` interface.
 
 Example:
 
@@ -26,7 +26,7 @@ using KitchenDesignManager;
 
 namespace MyMod
 {
-    class KitchdenDesignProvider : IProvidesKitchenDesigns
+    class KitchdenDesignProvider : IDesignProvider
     {
 
         Dictionary<string, string> GetDesigns()
