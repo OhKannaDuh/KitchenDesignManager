@@ -33,7 +33,6 @@ namespace KitchenDesignManager
             // Load from providers
             foreach (IProvidesKitchenDesigns provider in DesignLoader.All())
             {
-                Entries = Entries.Concat(provider.GetDesigns()).ToList();
             }
         }
 
