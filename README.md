@@ -4,7 +4,7 @@
 
 # Adding custom designs
 
-The mod loads json files from `%localappdata%low/It's Happening/PlateUp/UserData/KitchdenDesignManager\`
+The mod loads json files from `%localappdata%low\It's Happening\PlateUp\UserData\KitchdenDesignManager\`
 
 These json files can contain any number of designs and should follow this schema:
 
@@ -40,7 +40,7 @@ namespace MyMod
 }
 ```
 
-Then register it with the `DesignLoader` once your made has been activated.
+Then register it with the `DesignLoader` once your mod has been activated.
 
 ```
 DesignLoader.Register(new KitchdenDesignProvider());
