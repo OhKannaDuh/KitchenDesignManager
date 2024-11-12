@@ -4,8 +4,6 @@ using System.Linq;
 using KitchenDesignManager.Providers;
 using PreferenceSystem;
 using ONe.KitchenDesigner.KitchenDesigns;
-using Kitchen;
-using ExitGames.Client.Photon.StructWrapping;
 
 
 namespace KitchenDesignManager
@@ -14,11 +12,11 @@ namespace KitchenDesignManager
     public class Mod : IModInitializer
     {
         public const string MOD_GUID = "com.ohkannaduh.kdm";
-        public const string MOD_NAME = "Kitchen Design Manager";
+        public const string MOD_NAME = "Kitchen Design Selector";
         public const string MOD_VERSION = "2.0.0";
         public const string MOD_AUTHOR = "OhKannaDuh, ThaMighty";
         public const string MOD_GAMEVERSION = ">=1.2.0";
-  
+
         private static Dictionary<string, string> Designs = [];
 
         static PreferenceSystemManager PrefManager;
@@ -40,7 +38,7 @@ namespace KitchenDesignManager
             LoadDesigns();
 
             PrefManager
-            .AddLabel("Kitchen Design Manager")
+            .AddLabel("Kitchen Design Selector")
             .AddInfo("Select your favorite Kitchen Design")
             .AddOption<string>("designs", Designs.Keys.ToArray()[0], [.. Designs.Values], [.. Designs.Keys], true)
             .AddButton("Load Design", (Load) =>

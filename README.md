@@ -1,10 +1,12 @@
 # Breaking Changes With Mod Version 2.0.0
 
 The Layout of the JSON file has changed so to make the mod work again, if you were previously
-on an older version, you have to either alter or delete your files at
+on an older version, you have to either alter and move or delete your files at
 `%localappdata%low\It's Happening\PlateUp\UserData\KitchdenDesignManager\`
+These files should now be located at `%localappdata%low\It's Happening\PlateUp\UserData\KitchenDesignSelector\`
 
 Change the JSON Layout from
+
 ```
 [
     {
@@ -30,10 +32,11 @@ to
 # Dependencies
 
 - [PreferenceSystem](https://steamcommunity.com/sharedfiles/filedetails/?id=2949018507)
+- [Kitchen Designer](https://steamcommunity.com/sharedfiles/filedetails/?id=2901012380)
 
 # Adding custom designs
 
-The mod loads json files from `%localappdata%low\It's Happening\PlateUp\UserData\KitchdenDesignManager\`
+The mod loads json files from `%localappdata%low\It's Happening\PlateUp\UserData\KitchenDesignSelector\`
 
 These json files can contain any number of designs and should follow this schema:
 
