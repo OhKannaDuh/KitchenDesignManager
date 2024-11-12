@@ -15,7 +15,7 @@ namespace KitchenDesignManager
     {
         public const string MOD_GUID = "com.ohkannaduh.kdm";
         public const string MOD_NAME = "Kitchen Design Manager";
-        public const string MOD_VERSION = "1.1.0";
+        public const string MOD_VERSION = "2.0.0";
         public const string MOD_AUTHOR = "OhKannaDuh, ThaMighty";
         public const string MOD_GAMEVERSION = ">=1.2.0";
   
@@ -27,7 +27,7 @@ namespace KitchenDesignManager
             foreach (IDesignProvider provider in DesignLoader.All())
             {
                 foreach (KeyValuePair<string, string> kvp in provider.GetDesigns())
-                Designs.Add(kvp.Key, kvp.Value);
+                    Designs.Add(kvp.Key, kvp.Value);
             }
         }
 
